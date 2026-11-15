@@ -9,4 +9,7 @@ for i, name in enumerate(names, 1):
 ch = int(input("\nChoose WiFi number: "))
 wifi = name[ch - 1]
 
-result = subprocess.check_output()
+result = subprocess.check_output(f"netsh wlan show profile \"{wifi}\" key = clear", shell = True).decode()
+
+printf(f"\n Password: {result.split(' : ')[1].strip()}")
+
